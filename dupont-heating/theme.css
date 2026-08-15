@@ -1,0 +1,43 @@
+/* Dupont Heating & Air Conditioning Ltd — theme
+   A 1964 firm doing residential, commercial and industrial work. Palette is
+   deliberately heavier than the World of Comfort build: graphite + slate with
+   a heritage red CTA, so the two sites never read as the same template. */
+:root {
+  --brand:     #2f4a5e;
+  --brand-600: #24394a;
+  --brand-700: #1a2b39;
+  --brand-050: #eef3f7;
+
+  --accent:     #b02b36;
+  --accent-600: #8f2029;
+
+  --ink:    #16202a;
+  --dark:   #14181c;
+  --dark-2: #1f262e;
+}
+
+.hero__media {
+  background-image: linear-gradient(180deg, rgba(20,24,28,.25), rgba(20,24,28,.65));
+}
+
+/* Brass hairline that reinforces the heritage feel without adding weight. */
+.trustbar { border-top: 3px solid var(--accent); }
+
+.brand-mark--dupont {
+  background: linear-gradient(140deg, #2f4a5e, #1a2b39);
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.22rem;
+  letter-spacing: -.04em;
+}
+
+/* Review score pill used in the hero. */
+.score {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.18);
+  border-radius: var(--radius-pill); padding: 9px 20px 9px 14px; margin-bottom: 22px;
+}
+.score__num { font-family: var(--display); font-weight: 800; font-size: 1.3rem; color: #fff; line-height: 1; }
+.score__stars { display: flex; gap: 2px; }
+.score__stars svg { width: 15px; height: 15px; color: #f5a623; }
+.score__meta { font-size: .84rem; color: var(--on-dark-mute); }

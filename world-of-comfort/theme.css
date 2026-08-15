@@ -1,0 +1,29 @@
+/* World of Comfort Ltd — theme
+   Palette: deep service-blue drawn from their existing site's blue identity,
+   warmed with an ember accent for the heating side of the business. */
+:root {
+  --brand:     #1466a8;
+  --brand-600: #10547f; /* hover / body-copy blue */
+  --brand-700: #0c4266;
+  --brand-050: #eef6fc;
+
+  --accent:     #e8791d;
+  --accent-600: #cd6512;
+
+  --dark:   #08192a;
+  --dark-2: #0f2a44;
+}
+
+/* Hero photo slot — replace url() with the client's own hero image. */
+.hero__media {
+  background-image: linear-gradient(180deg, rgba(8,25,42,.2), rgba(8,25,42,.6));
+}
+
+/* Roundel used in place of a logo file until the real mark is captured. */
+.brand-mark--woc {
+  background: linear-gradient(140deg, #1466a8, #0c4266);
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.02rem;
+  letter-spacing: -.03em;
+}

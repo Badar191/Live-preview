@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Website Previews</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0a1826">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0d1b2a; --ink-2:#33475b; --muted:#5f7183; --line:#dde6ee;
+    --surface:#f6f9fc; --brand:#0f6fbf; --brand-700:#094a80; --dark:#0a1826;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    --display:"Plus Jakarta Sans","Inter",sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;font-family:var(--sans);color:var(--ink-2);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin-inline:auto;padding-inline:clamp(18px,4vw,32px)}
+  h1,h2,h3{font-family:var(--display);color:var(--ink);letter-spacing:-.02em;margin:0 0 .4em;font-weight:800;line-height:1.15}
+  a{color:var(--brand-700)}
+  header.top{background:var(--dark);color:#cfdcea;padding:clamp(44px,7vw,72px) 0}
+  header.top h1{color:#fff;font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:12px}
+  header.top p{max-width:56ch;color:#9fb4c8;margin:0}
+  section{padding-block:clamp(38px,5vw,56px)}
+  .cards{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .card{border:1px solid var(--line);border-radius:16px;background:#fff;padding:26px 24px;display:flex;flex-direction:column;gap:6px;
+        transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+  .card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(13,27,42,.09);border-color:#b9cfe2}
+  .card h2{font-size:1.16rem;margin:0}
+  .card .loc{font-size:.88rem;color:var(--muted);margin-bottom:14px}
+  .card a.go{margin-top:auto;display:inline-flex;align-items:center;gap:7px;background:var(--brand);color:#fff;
+             padding:11px 20px;border-radius:999px;font-weight:700;font-size:.92rem;text-decoration:none;align-self:flex-start}
+  .card a.go:hover{background:var(--brand-700)}
+  footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--muted);font-size:.86rem}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <h1>Website previews</h1>
+    <p>Draft site designs prepared for review. Each is a working, fully responsive
+       page — open one on a phone to see how it behaves.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="cards">
+      <article class="card">
+        <h2>World of Comfort</h2>
+        <div class="loc">HVAC contractor · Toronto</div>
+        <a class="go" href="world-of-comfort/">Open preview →</a>
+      </article>
+      <article class="card">
+        <h2>Dupont Heating &amp; Air Conditioning</h2>
+        <div class="loc">HVAC contractor · Toronto</div>
+        <a class="go" href="dupont-heating/">Open preview →</a>
+      </article>
+      <article class="card">
+        <h2>Cool Comfort System</h2>
+        <div class="loc">Ductwork &amp; air conditioning · Scarborough</div>
+        <a class="go" href="cool-comfort-system/">Open preview →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Draft previews, shared for review. Not indexed by search engines.</div>
+</footer>
+
+</body>
+</html>
