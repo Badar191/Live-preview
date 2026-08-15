@@ -153,11 +153,18 @@ p:last-child { margin-bottom: 0; }
 .topbar-item { display: inline-flex; align-items: center; gap: 8px; }
 .topbar-item svg { width: 15px; height: 15px; flex: none; color: var(--accent); }
 
+/* The frosted background lives on a pseudo-element, NOT on .site-header itself.
+   backdrop-filter on the header would make it the containing block for its
+   fixed-position descendants, which collapses the mobile drawer from full
+   height down to the height of the header. */
 .site-header {
   position: sticky; top: 0; z-index: 100;
+  border-bottom: 1px solid var(--line);
+}
+.site-header::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
   background: rgba(255,255,255,.94);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--line);
 }
 .site-header.is-stuck { box-shadow: var(--shadow-sm); }
 .nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 78px; }
