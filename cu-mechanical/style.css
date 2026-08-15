@@ -780,7 +780,7 @@ body.nav-open { overflow: hidden; }
   text-transform: uppercase;
   color: var(--gold-lt);
 }
-.c-ledger dd { margin: 0; color: var(--paper); font-size: 1rem; line-height: 1.5; }
+.c-ledger dd { margin: 0; color: var(--paper); font-size: 1rem; line-height: 1.5; overflow-wrap: anywhere; }
 .c-ledger dd a { border-bottom: 1px solid rgba(201,162,39,.5); transition: color .25s ease; }
 .c-ledger dd a:hover { color: var(--gold-lt); }
 .c-ledger dd small {
