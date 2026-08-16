@@ -155,9 +155,12 @@ h1 em, h2 em { font-style: italic; font-weight: 480; }
   white-space: nowrap;
 }
 .header-phone:hover { color: var(--red); }
+.header-call { display: none; color: #fff; border: 1px solid rgba(255,255,255,.4); border-radius: 3px; transition: color .35s ease, border-color .35s ease; }
+.site-header.is-stuck .header-call { color: var(--ink); border-color: var(--line); }
+
 
 .site-header.is-stuck {
-  background: rgba(248, 243, 234, .97);
+  background: #f8f3ea /* solid: translucent stuck headers ghost dark content through */;
   box-shadow: 0 1px 0 var(--line-soft), 0 12px 30px -18px rgba(22,39,60,.35);
 }
 .site-header.is-stuck .brand-name,
@@ -570,7 +573,10 @@ body.nav-open { overflow: hidden; }
 .faq summary::after {
   content: "+";
   position: absolute;
-  right: 4px;
+  /* right >= 12px: the open-state 45deg rotation widens the glyph box ~9px;
+     anchored at 4px it poked past the padding edge and was sliced by
+     html{overflow-x:clip} at 390px. */
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
   font-family: var(--sans);
@@ -613,7 +619,31 @@ body.nav-open { overflow: hidden; }
   aspect-ratio: 16 / 9;
   background: var(--paper);
 }
-.map-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+/* Self-contained location card — replaces the old Google iframe, which the
+   embed endpoint now refuses to serve into a frame (404 + SAMEORIGIN). */
+.map-still {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 6px;
+  padding: clamp(18px, 2.6vw, 28px);
+  background:
+    repeating-linear-gradient(0deg, transparent 0 46px, rgba(31, 41, 63, .06) 46px 47px),
+    repeating-linear-gradient(90deg, transparent 0 46px, rgba(31, 41, 63, .06) 46px 47px),
+    var(--paper);
+}
+.map-still__pin { position: absolute; top: 18%; right: 12%; color: var(--red); }
+.map-still__pin::after {
+  content: ""; position: absolute; left: 50%; top: 110%;
+  width: 26px; height: 8px; transform: translateX(-50%);
+  border-radius: 50%; background: rgba(31, 41, 63, .14); filter: blur(1px);
+}
+.map-still__addr { font-size: .95rem; color: var(--ink-soft); line-height: 1.5; }
+.map-still__addr strong { display: block; font-family: var(--serif); font-size: 1.18rem; color: var(--ink); }
+.map-still__link { font-weight: 700; font-size: .9rem; color: var(--red); border-bottom: 1px solid currentColor; }
+.map-still__link:hover { color: var(--ink); }
 
 .book__form {
   background: #fff;
@@ -714,6 +744,12 @@ body.nav-open { overflow: hidden; }
   .quote-row { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {
+  /* the -1.6deg polaroid tilt makes the framed cover 6px wider than the
+     column at phone widths and it gets sliced by overflow-x:clip */
+  .feature__media img { transform: none; }
+  /* icon-only tap-to-call: the text phone and CTA hide at this width,
+     but §5 requires a reachable call affordance in the header */
+  .header-call { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; }
   .header-phone { display: none; }
   .header-actions .btn { display: none; }
   .callbar { display: flex; }

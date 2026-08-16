@@ -109,7 +109,7 @@ h1 em, h2 em { font-style: normal; color: var(--cobalt); }
   transition: box-shadow .3s ease, background-color .3s ease;
 }
 .site-header.is-stuck {
-  background: rgba(238, 244, 247, .98);
+  background: #eef4f7 /* solid: translucent stuck headers ghost dark content through */;
   box-shadow: 0 1px 0 var(--line-soft), 0 16px 34px -24px rgba(12, 47, 63, .5);
 }
 .header-bar {
@@ -153,6 +153,8 @@ h1 em, h2 em { font-style: normal; color: var(--cobalt); }
   white-space: nowrap;
 }
 .header-phone:hover { color: var(--cobalt); }
+.header-call { display: none; color: var(--ink); border: 1px solid var(--line); border-radius: 4px; }
+
 
 .nav-toggle {
   display: none;
@@ -458,7 +460,10 @@ html:not(.js) .draw {
 .faq summary::after {
   content: "+";
   position: absolute;
-  right: 4px;
+  /* right >= 12px: the open-state 45deg rotation widens the glyph box ~9px;
+     anchored at 4px it poked past the padding edge and was sliced by
+     html{overflow-x:clip} at 390px. */
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 1.5rem;
@@ -604,7 +609,12 @@ html:not(.js) .draw {
   .book { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {
+  /* icon-only tap-to-call: the text phone and CTA hide at this width,
+     but §5 requires a reachable call affordance in the header */
+  .header-call { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; }
   .header-phone { display: none; }
+  .brand-name { font-size: .96rem; }
+  .brand-sub { font-size: .64rem; }
   .header-actions .btn { display: none; }
   .callbar { display: flex; }
   body { padding-bottom: 74px; }

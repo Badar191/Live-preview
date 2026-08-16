@@ -149,6 +149,8 @@ h1 em, h2 em { font-style: normal; color: var(--red); }
   white-space: nowrap;
 }
 .header-phone:hover { color: var(--red); }
+.header-call { display: none; color: var(--bone); border: 1px solid var(--line-d); border-radius: 2px; }
+
 
 .nav-toggle {
   display: none;
@@ -459,7 +461,10 @@ body.nav-open { overflow: hidden; }
 .faq summary::after {
   content: "+";
   position: absolute;
-  right: 4px;
+  /* right >= 12px: the open-state 45deg rotation widens the glyph box ~9px;
+     anchored at 4px it poked past the padding edge and was sliced by
+     html{overflow-x:clip} at 390px. */
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 1.5rem;
@@ -502,7 +507,31 @@ body.nav-open { overflow: hidden; }
   aspect-ratio: 16 / 9;
   background: var(--coal-2);
 }
-.map-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+/* Self-contained location card — replaces the old Google iframe, which the
+   embed endpoint now refuses to serve into a frame (404 + SAMEORIGIN). */
+.map-still {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 6px;
+  padding: clamp(18px, 2.6vw, 28px);
+  background:
+    repeating-linear-gradient(0deg, transparent 0 46px, rgba(233, 226, 214, .07) 46px 47px),
+    repeating-linear-gradient(90deg, transparent 0 46px, rgba(233, 226, 214, .07) 46px 47px),
+    var(--coal-2);
+}
+.map-still__pin { position: absolute; top: 18%; right: 12%; color: var(--red); }
+.map-still__pin::after {
+  content: ""; position: absolute; left: 50%; top: 110%;
+  width: 26px; height: 8px; transform: translateX(-50%);
+  border-radius: 50%; background: rgba(0, 0, 0, .45); filter: blur(1px);
+}
+.map-still__addr { font-size: .95rem; color: var(--bone-2, #cfc8ba); line-height: 1.5; }
+.map-still__addr strong { display: block; font-size: 1.18rem; letter-spacing: .01em; color: var(--bone, #e9e2d6); }
+.map-still__link { font-weight: 700; font-size: .9rem; color: var(--red); border-bottom: 1px solid currentColor; }
+.map-still__link:hover { color: var(--bone, #e9e2d6); }
 
 .book__form {
   background: var(--bone);
@@ -606,6 +635,9 @@ body.nav-open { overflow: hidden; }
   .book { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {
+  /* icon-only tap-to-call: the text phone and CTA hide at this width,
+     but §5 requires a reachable call affordance in the header */
+  .header-call { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; }
   .header-phone { display: none; }
   .header-actions .btn { display: none; }
   .callbar { display: flex; }

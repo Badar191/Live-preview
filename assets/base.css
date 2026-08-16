@@ -52,6 +52,12 @@ html {
   scroll-behavior: smooth;
   overflow-x: clip;
 }
+/* Anchor landings must clear the sticky header, and must absorb the ~35px
+   up-shift that happens when the target is itself a [data-reveal] element
+   still holding its pre-reveal transform at jump time (the jump measures the
+   transformed box; the reveal then removes the transform). 96px covers the
+   tallest header in the set (88px) with room for both effects. */
+[id] { scroll-margin-top: 96px; }
 body { margin: 0; overflow-x: clip; -webkit-font-smoothing: antialiased; }
 img, svg, video { max-width: 100%; height: auto; display: block; }
 button { font: inherit; cursor: pointer; }

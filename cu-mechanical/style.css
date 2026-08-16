@@ -168,7 +168,7 @@ em { font-style: italic; color: var(--gold-dk); }
   transition: background-color .4s ease, box-shadow .4s ease;
 }
 .site-header.is-stuck {
-  background: rgba(13, 15, 20, .96);
+  background: #0d0f14 /* solid: translucent stuck headers ghost dark content through */;
   box-shadow: 0 1px 0 rgba(201,162,39,.22), 0 18px 40px -30px rgba(0,0,0,.9);
 }
 .header-bar {

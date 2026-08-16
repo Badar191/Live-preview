@@ -133,7 +133,7 @@ h1 em, h2 em { font-style: normal; color: var(--amber); }
   transition: box-shadow .3s ease, background-color .3s ease;
 }
 .site-header.is-stuck {
-  background: rgba(14, 22, 34, .98);
+  background: #0e1622 /* solid: translucent stuck headers ghost dark content through */;
   box-shadow: 0 1px 0 var(--line-d), 0 16px 34px -22px rgba(0, 0, 0, .85);
 }
 .header-bar {
@@ -164,6 +164,7 @@ h1 em, h2 em { font-style: normal; color: var(--amber); }
   text-transform: uppercase;
   color: rgba(242, 245, 248, .55);
 }
+.header-quote-ico { display: none; color: var(--amber); border: 1px solid rgba(242, 197, 66, .5); border-radius: 2px; }
 .header-nav { display: flex; gap: clamp(14px, 2vw, 26px); }
 .header-nav a {
   font-weight: 600;
@@ -256,7 +257,7 @@ body.nav-open { overflow: hidden; }
   font-family: var(--disp);
   font-stretch: 118%;
   font-weight: 800;
-  font-size: clamp(2.5rem, 8.2vw, 6.6rem);
+  font-size: clamp(1.75rem, 8.3vw, 6.6rem); /* floor low enough that "Refrigeration." fits a 390px phone */
   line-height: .96;
   letter-spacing: .005em;
   text-transform: uppercase;
@@ -503,7 +504,10 @@ html:not(.js) .draw {
 .faq summary::after {
   content: "+";
   position: absolute;
-  right: 4px;
+  /* right >= 12px: the open-state 45deg rotation widens the glyph box ~9px;
+     anchored at 4px it poked past the padding edge and was sliced by
+     html{overflow-x:clip} at 390px. */
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
   font-family: var(--sans);
@@ -640,7 +644,10 @@ html:not(.js) .draw {
   .forlist { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {
-  .header-actions .btn { display: none; }
+  /* no phone number exists for this business (their listing masks it), so
+     the header keeps a quote CTA as the reachable action instead of
+     tap-to-call */
+  .header-actions .btn { padding: 11px 12px; font-size: .72rem; letter-spacing: .02em; }
   .callbar { display: flex; }
   body { padding-bottom: 74px; }
   .hero__proof div { flex: 1 1 40%; margin-right: 0; }
@@ -649,4 +656,14 @@ html:not(.js) .draw {
   .field-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .contact-ledger div { grid-template-columns: 100px 1fr; }
+}
+
+@media (max-width: 560px) {
+  /* the display-face brand and a text CTA cannot share 390px: below 560px the
+     quote CTA collapses to an icon and the brand tightens */
+  .header-actions .btn { display: none; }
+  .header-quote-ico { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; }
+  .brand-name { font-size: .84rem; letter-spacing: .01em; }
+  .brand-sub { font-size: .56rem; letter-spacing: .2em; }
+  .brand-mark svg { width: 30px; height: 30px; }
 }
